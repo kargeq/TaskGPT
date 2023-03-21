@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "openai": "^3.2.1",
+    "webpack": "^5.76.2"
+  },
+  "dependencies": {
+    "chatgpt": "^5.1.2"
+  }
+
+}
