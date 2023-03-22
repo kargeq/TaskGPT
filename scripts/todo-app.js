@@ -1,4 +1,4 @@
-import { ChatGPTAPI } from 'chatgpt'
+import { ChatGPTUnofficialProxyAPI } from 'chatgpt'
 
 let todos = getSavedTodos()
 
@@ -36,14 +36,12 @@ document.querySelector('#hide-completed').addEventListener('change', function (e
 })
 let count=1
 const onlyTodos=todos.map((todo)=>todo.text+",")
-const API_KEY = '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';
-const prompt =  "Give me advice on my todos: I need to complete them in the week but am struggling are they feasable " +onlyTodos.join(", ");
-
+console.log(process.env.OPENAI_ACCESS_TOKEN)
 async function generateResponse() {
     console.log(onlyTodos.join(", "))
-    const api = new ChatGPTAPI({
-        apiKey: process.env.OPENAI_API_KEY
-      })
+    const api = new ChatGPTUnofficialProxyAPI({
+      accessToken: 'OPENAI_ACCESS_TOKEN'
+    })
     
       const res = await api.sendMessage('Hello World!')
       
