@@ -18,6 +18,8 @@ const saveTodos = (todos) => {
 
 // Remove todo by id
 const removeTodo = (id) => {
+    console.log(todos)
+
     const todoIndex = todos.findIndex((todo) => todo.id === id)
 
     if (todoIndex > -1) {
@@ -37,6 +39,7 @@ const toggleTodo = (id) => {
 // Render application todos based on filters
 const renderTodos = (todos, filters) => {
     const filteredTodos = todos.filter((todo) => {
+        console.log(todos)
         const searchTextMatch = todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
         const hideCompletedMatch = !filters.hideCompleted || !todo.completed
         
@@ -45,17 +48,17 @@ const renderTodos = (todos, filters) => {
 
     const incompleteTodos = filteredTodos.filter((todo) => !todo.completed)
 
-    document.querySelector('#todos').innerHTML = ''
-    document.querySelector('#todos').appendChild(generateSummaryDOM(incompleteTodos))
+    document.querySelector('#Todos').innerHTML = ''
+    document.querySelector('#Todos').appendChild(generateSummaryDOM(incompleteTodos))
     if (filteredTodos.length>0){
         filteredTodos.forEach((todo) => {
-            document.querySelector('#todos').appendChild(generateTodoDOM(todo))
+            document.querySelector('#Todos').appendChild(generateTodoDOM(todo))
         })
     }else{
         const noItems=document.createElement('p');
         noItems.classList.add('empty-message')
         noItems.textContent="No items found for you to do";
-        document.querySelector('#todos').appendChild(noItems)
+        document.querySelector('#Todos').appendChild(noItems)
     }
     
 }
@@ -110,5 +113,3 @@ const generateSummaryDOM = (incompleteTodos) => {
     summary.textContent = `You have ${incompleteTodos.length} todo${s} left`
     return summary
 }
-
-

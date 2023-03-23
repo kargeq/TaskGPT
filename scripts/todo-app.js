@@ -8,12 +8,13 @@ const filters = {
 }
 
 renderTodos(todos, filters)
-
+//add input to search and render
 document.querySelector('#search-text').addEventListener('input', function (e) {
     filters.searchText = e.target.value
     renderTodos(todos, filters)
 })
 
+//add item to list 
 document.querySelector('#new-todo').addEventListener('submit', function (e) {
     const text=e.target.elements.text.value.trim()
     e.preventDefault()
@@ -29,21 +30,20 @@ document.querySelector('#new-todo').addEventListener('submit', function (e) {
     e.target.elements.text.value = ''
 }
 })
-
+//hide any completed items 
 document.querySelector('#hide-completed').addEventListener('change', function (e) {
     filters.hideCompleted = e.target.checked
     renderTodos(todos, filters)
 })
 let count=1
 const onlyTodos=todos.map((todo)=>todo.text+",")
-console.log(process.env.OPENAI_ACCESS_TOKEN)
 async function generateResponse() {
     console.log(onlyTodos.join(", "))
     const api = new ChatGPTUnofficialProxyAPI({
       accessToken: 'OPENAI_ACCESS_TOKEN'
     })
     
-      const res = await api.sendMessage('Hello World!')
+      const res = await api.sendMessage('How are my tasks, '+ onlyTodos.join(", "))
       
 const pTag = document.createElement('p');
   pTag.innerHTML = `Feedback: ${res.text}`;
