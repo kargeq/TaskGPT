@@ -146,7 +146,7 @@ let count=1
 const onlyTodos=todos.map((todo)=>todo.text+",")
 async function generateResponse() {
     const api = new ChatGPTUnofficialProxyAPI({
-      accessToken: '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'
+      accessToken: ''
     })
     
       const res = await api.sendMessage('How are my tasks, '+ onlyTodos.join(", ")+"how can I finish in one week without procrastinating")
