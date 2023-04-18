@@ -10,8 +10,7 @@ note that to use this project you must create an env file and create an api toke
 heres a sample image of how the project looks:<br> 
 ![alt text](/imgs/sampleImage.png)<br>
 
-The user has an option to add a filter tasks and remove them  and generate a response which will call the openapi api. Note in the actual project a proxy is being used in lieu of the official api, unfortunately, when testing this out it is likely that you may experience issues without using the official api.
-
+The user has an option to add a filter tasks and remove them  and generate a response which will call the openapi api. 
 
 
 
