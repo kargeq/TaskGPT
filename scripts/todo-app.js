@@ -1,4 +1,4 @@
-import { ChatGPTUnofficialProxyAPI } from 'chatgpt'
+import { ChatGPTAPI, ChatGPTUnofficialProxyAPI } from 'chatgpt'
 // Fetch existing todos from localStorage
 const getSavedTodos = () => {
     const todosJSON = localStorage.getItem('todos')
@@ -145,13 +145,17 @@ document.querySelector('#hide-completed').addEventListener('change', function (e
 let count=1
 const onlyTodos=todos.map((todo)=>todo.text+",")
 async function generateResponse() {
-    const api = new ChatGPTUnofficialProxyAPI({
-      accessToken: ''
+    const api = new ChatGPTAPI({
+      apiKey: process.env.OPENAI_API_KEY
+
+
     })
     
-      const res = await api.sendMessage('How are my tasks, '+ onlyTodos.join(", ")+"how can I finish in one week without procrastinating")
+      const res = await api.sendMessage('How are my tasks, '+ onlyTodos.join(", ")+"how can I finish in one week without procrastinating. give me some resources on these topics")
       
 const pTag = document.createElement('p');
+pTag.style.margin="20px"
+
   pTag.innerHTML = `Feedback: ${res.text}`;
   document.body.appendChild(pTag);
 
